@@ -39,7 +39,6 @@ void getColor(uint8_t value, char *color, size_t length) {
 
 void drawBoard(uint8_t board[SIZE][SIZE]) {
     uint8_t x,y;
-    char c;
     char color[40], reset[] = "\033[m";
     printf("\033[H");
 
@@ -265,13 +264,13 @@ void initBoard(uint8_t board[SIZE][SIZE]) {
 }
 
 void setBufferedInput(bool enable) {
-	static bool enabled = true;
-	static struct termios old;
-	struct termios new;
+    static bool enabled = true;
+    static struct termios old;
+    struct termios new;
 
-	if (enable && !enabled) {
-		// restore the former settings
-		tcsetattr(STDIN_FILENO,TCSANOW,&old);
+    if (enable && !enabled) {
+        // restore the former settings
+        tcsetattr(STDIN_FILENO,TCSANOW,&old);
 		// set the new state
 		enabled = true;
 	} else if (!enable && enabled) {
